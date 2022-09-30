@@ -1,0 +1,27 @@
+<% layout('/layouts/boilerplate')%>
+    <h1 class="mb-5">Login</h1>
+    <div class="row">
+        <div class="col-4">
+            <form action="/login" method="POST" novalidate class="needs-validation">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                    <div class="invalid-feedback">
+                        can't be blank
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                    <div class="invalid-feedback">
+                        can't be blank
+                    </div>
+                </div>
+                <button class="btn btn-success">Login</button>
+            </form>
+        </div>
+        <div class="col-8">
+            <img src="https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                class="img-fluid" alt="">
+        </div>
+    </div>

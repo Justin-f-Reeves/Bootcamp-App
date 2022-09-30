@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const { campgroundSchema } = require('../joiSchemas');
+const { JoiCampgroundSchema } = require('../joiSchemas');
 const review = require('./review');
 const Schema = mongoose.Schema;
 // note this is just a shortcut so you don't have to type
 // "mongoose.Schema a bunch of times later on when referencing relationships" like...
 // mongoose.Schema.Types.somethingsomething. 
 
-const CampgroundSchema = new Schema({
+const campgroundSchema = new Schema({
     title: String,
     price: Number,
     description: String,
@@ -20,7 +20,7 @@ const CampgroundSchema = new Schema({
     ]
 });
 
-CampgroundSchema.post('findOneAndDelete', async function (doc) {
+campgroundSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {
         await review.deleteMany({
             _id: {
@@ -31,5 +31,5 @@ CampgroundSchema.post('findOneAndDelete', async function (doc) {
 })
 
 
-module.exports = mongoose.model('Campground', CampgroundSchema);
+module.exports = mongoose.model('Campground', campgroundSchema);
 
