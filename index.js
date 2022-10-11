@@ -12,6 +12,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const userRoutes = require('./routes/users');
+const { timeSince } = require('./utils/humanTime');
 
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp');
@@ -72,6 +73,12 @@ app.use('/', userRoutes);
 
 
 app.get('/', (req, res) => {
+    const visitedHomePage = new Date;
+    visitedHomePage.setDate(visitedHomePage.getDate() - 1);
+    console.log(visitedHomePage);
+    console.log(typeof visitedHomePage);
+    console.log(`You visited the homepage ${timeSince(visitedHomePage)} ago`)
+
     res.render('home');
 })
 

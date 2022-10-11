@@ -1,4 +1,6 @@
 <% layout('/layouts/boilerplate')%>
+    <link rel="stylesheet" href="/stylesheets/stars.css">
+
     <div class="row">
         <div class="col-6">
             <div class="card mb-3">
@@ -41,10 +43,25 @@
 
             <form action="/campgrounds/<%= campground._id %>/reviews" method="POST" class="mb-3 needs-validation"
                 novalidate>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label" for="rating">Rating</label>
                     <input class="form-range" type="range" min="1" max="5" id="rating" name="review[rating]">
-                </div>
+
+                </div> -->
+                <fieldset class="starability-basic">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                        aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
                 <div class="mb-3">
                     <label class="form-label" for="body">Review</label>
                     <% if (currentUser) { %>
@@ -77,12 +94,14 @@
                 <% } else if (campground.reviews.length==1){ %>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Rating: <%= campground.reviews[0].rating %>
+                            <h5 class="card-title">
+                                <%= campground.reviews[0].author.username %>
                             </h5>
-                            <h6 class="card-subtitle text-muted">
-                                by <%= campground.reviews[0].author.username %>
-                            </h6>
-                            <p class="card-text">Review: <%= campground.reviews[0].body %>
+                            <p class="starability-result" data-rating="<%= campground.reviews[0].rating %>">
+                                Rated: <%= campground.reviews[0].rating %> stars
+                            </p>
+                            <p class="card-text">
+                                <%= campground.reviews[0].body %>
                             </p>
                             <% if (currentUser && campground.reviews[0].author.equals(currentUser._id)) { %>
                                 <form
@@ -98,12 +117,15 @@
                             <% while (count < 2) { %>
                                 <div class="card mb-3">
                                     <div class="card-body">
-                                        <h5 class="card-title">Rating: <%= campground.reviews[count].rating %>
+                                        <h5 class="card-title">
+                                            <%= campground.reviews[count].author.username %>
                                         </h5>
-                                        <h6 class="card-subtitle text-muted">
-                                            by <%= campground.reviews[count].author.username %>
-                                        </h6>
-                                        <p class="card-text">Review: <%= campground.reviews[count].body %>
+                                        <p class="starability-result"
+                                            data-rating="<%= campground.reviews[count].rating %>">
+                                            Rated: <%= campground.reviews[count].rating %> stars
+                                        </p>
+                                        <p class="card-text">
+                                            <%= campground.reviews[count].body %>
                                         </p>
                                         <% if (currentUser && campground.reviews[count].author.equals(currentUser._id))
                                             { %>
