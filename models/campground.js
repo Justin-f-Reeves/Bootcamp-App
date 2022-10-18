@@ -6,11 +6,21 @@ const Schema = mongoose.Schema;
 // "mongoose.Schema a bunch of times later on when referencing relationships" like...
 // mongoose.Schema.Types.somethingsomething. 
 
+
+const ImageSchema = new Schema({
+    url: String,
+    filename: String
+});
+
+ImageSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_200');
+});
+
 const campgroundSchema = new Schema({
     title: String,
     price: Number,
     description: String,
-    image: String,
+    images: [ImageSchema],
     location: String,
     author: {
         type: Schema.Types.ObjectId,

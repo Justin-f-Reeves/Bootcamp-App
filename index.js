@@ -1,3 +1,10 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config()
+}
+
+console.log(process.env.SECRET)
+console.log(process.env.API_KEY)
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -13,6 +20,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const userRoutes = require('./routes/users');
 const { timeSince } = require('./utils/humanTime');
+
 
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp');

@@ -25,6 +25,24 @@
         </main>
 
         <%- include('../partials/footer') %>
+
+           
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script>$(".form-control").on("change", function () {
+                    var files = Array.from(this.files)
+                    updatedFiles = files.map(f => { return f.name });
+                    for (let i = 0; i < updatedFiles.length; i++) {
+                        if (updatedFiles[i].length > 15) {
+                            updatedFiles[i] = updatedFiles[i].slice(0, 9).concat(`...${updatedFiles[i].slice(-6)}`)
+                        }
+                    }
+                    var fileName = updatedFiles.join(", ")
+                    if (files.length > 1) {
+                        return $(this).siblings(".form-label").addClass("selected").html(fileName)
+                    }
+                });
+            </script>
+
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
                 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
                 crossorigin="anonymous"></script>

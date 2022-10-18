@@ -2,6 +2,7 @@ const { campgroundSchema, reviewSchema } = require('./joiSchemas.js');
 const ExpressError = require('./utils/ExpressError');
 const Campground = require('./models/campground');
 const Review = require('./models/review');
+const { findOneAndUpdate } = require('./models/review');
 
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -74,8 +75,4 @@ module.exports.isReviewAuthor = async (req, res, next) => {
     }
     next();
 }
-
-
-
-
 

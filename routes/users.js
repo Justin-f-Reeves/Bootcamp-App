@@ -13,7 +13,7 @@ router.route('/login')
     .post(passport.authenticate('local', {
         failureFlash: true,
         failureRedirect: '/login',
-        keepSessionInfo: true
+        keepSessionInfo: true,
     }), users.submitLoginData);
 
 
