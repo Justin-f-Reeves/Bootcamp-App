@@ -24,6 +24,13 @@ const seedDB = async () => {
             author: '6338f007099bfb0f5cf43db0',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
+            geometry: {
+                type: "Point",
+                coordinates: [
+                    cities[random1000].longitude,
+                    cities[random1000].latitude,
+                ]
+            },
             images: [
                 {
                     url: 'https://res.cloudinary.com/dasjozd14/image/upload/v1665709144/YelpCamp/rmcommhw6gkvmtlljozv.jpg',
